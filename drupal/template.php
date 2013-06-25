@@ -1,7 +1,7 @@
 /**
  * Fonction retournant l'alias d'url propre correspondant à une langue
  */
-function physiomer2013_urlt($path, $lang = null) {
+function urlt($path, $lang = null) {
     global $language;
     if($lang === null) {
         $lang = $language->language;
