@@ -20,9 +20,11 @@ function uID () {
  * restore the placeholder if the value is empty
  */
 // set the placeholder attr value in a data attributes data-placeholder value
-$('form input[type="text"], form textarea').each(function(){
-	$(this).data('placeholder', $(this).attr('placeholder'));	
-});
+var inputs = $('form input[type="text"], form textarea');
+for (var i = 0, len = inputs.length; i < len-1; i++) {
+	var that = inputs[i];
+	$(that).data('placeholder', $(this).attr('placeholder'));	
+}
 // bind on focus and focusout
 $('form input[type="text"], form textarea')
 	.bind('focus', function(){
@@ -38,3 +40,14 @@ $('form input[type="text"], form textarea')
             }
         })
 ;
+
+
+function loadScript(url, async) {
+	var script = document.createElement('script'),
+	scripts = document.getElementsByTagName('script')[0];
+	if (async) {
+		script.async = true;	
+	}
+	script.src = url;
+	scripts.parentNode.insertBefore(script, scripts);
+}
