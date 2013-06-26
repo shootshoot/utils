@@ -10,7 +10,7 @@ function uID () {
  */
 (function(w, d){
 	
-})(window, document)
+})(window, document);
 
 
 /**
