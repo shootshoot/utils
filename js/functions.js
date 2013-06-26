@@ -23,21 +23,15 @@ function uID () {
 var inputs = $('form input[type="text"], form textarea');
 for (var i = 0, len = inputs.length; i < len-1; i++) {
 	var that = inputs[i];
-	$(that).data('placeholder', $(this).attr('placeholder'));	
+	$(that).data('placeholder', this.placeholder);	
 }
 // bind on focus and focusout
 $('form input[type="text"], form textarea')
 	.bind('focus', function(){
-            if ($(this).val() == '') {
-                $(this).attr('placeholder', '');
-                $(this).prop('placeholder', '');
-            }
+            if ($(this).val() == '') this.placeholder = '';
         })
         .bind('focusout', function(){
-            if ($(this).val() == '') {
-                $(this).attr('placeholder', $(this).data('placeholder'));
-                $(this).prop('placeholder', $(this).data('placeholder'));
-            }
+            if ($(this).val() == '') this.placeholder = $(this).data('placeholder');
         })
 ;
 
