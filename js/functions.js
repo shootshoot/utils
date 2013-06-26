@@ -13,11 +13,17 @@ function uID () {
 })(window, document);
 
 
+
 /**
  * Better placeholder, need jquery
  * remove the placeholder when input or textarea has focus
  * restore the placeholder if the value is empty
  */
+// set the placeholder attr value in a data attributes data-placeholder value
+$('form input[type="text"], form textarea').each(function(){
+	$(this).data('placeholder', $(this).attr('placeholder'));	
+});
+// bind on focus and focusout
 $('form input[type="text"], form textarea')
 	.bind('focus', function(){
             if ($(this).val() == '') {
