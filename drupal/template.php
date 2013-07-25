@@ -13,3 +13,11 @@ function urlt($path, $lang = null) {
     }
     return url($path);
 }
+
+function lpu_print_block($module, $delta, $render = false){
+    $block = block_load($module, $delta);
+    $block_content = _block_render_blocks(array($block));
+    $build = _block_get_renderable_array($block_content);
+    if(!$render) return $build;
+    return drupal_render($build);
+}
