@@ -28,6 +28,7 @@ function lpu_print_block($module, $delta, $render = false){
  * @param object $entity : the entity object
  * @param string $field_name: The field name to get value
  * @param string $langcode : the lang_code, default NULL
+ * @param integer $index : the key of the item's values, default 0
  * @param boolean $safe_value : return the safe value or the value, default true
  * @param boolean $full : return the entire item, with the format, safe_value and value, default false, override the $safe_value param
  * @use field_get_items()
