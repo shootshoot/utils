@@ -14,6 +14,13 @@ function urlt($path, $lang = null) {
     return url($path);
 }
 
+/**
+ * Function to render a block
+ * @param string $module (e.g.: views or block)
+ * @param string $delta (e.g.: for views module, the delta is #ViewId-#displayName, for block module, the delta is a number 18)
+ * @param boolean $render if true, the return value is an html string, if false, the return value is a renderable array
+ * @param string|array
+ */
 function lpu_print_block($module, $delta, $render = false){
     $block = block_load($module, $delta);
     $block_content = _block_render_blocks(array($block));
