@@ -53,3 +53,25 @@ function _field_get_value($entity_type, $entity, $field_name, $langcode = NULL, 
         }
     }
 }
+
+
+
+
+function lpu_print_node_form($node_type, $node = null, $render = false) {
+    module_load_include('inc', 'node', 'node.pages');
+    if (!isset($node->nid)) {
+        global $user;
+        $node = new stdClass();
+        $node->uid = $user->uid;
+        $node->type = $node_type;
+        node_object_prepare($node);
+    }
+    $form = drupal_get_form($node_type . "_node_form", $node);
+    $form['#action'] = url(sprintf('node/add/%s', $node_type));
+    if ($render === true) {
+        return drupal_render($form);
+    }
+    else {
+        return $form;
+    }
+}
