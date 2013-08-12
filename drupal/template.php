@@ -31,6 +31,7 @@ function lpu_print_block($module, $delta, $render = false){
 
 /**
  * Return value or safe_value of a field
+ * If no value, return NULL
  * @param string $entity_type : node, user, taxonomy_term, file
  * @param object $entity : the entity object
  * @param string $field_name: The field name to get value
@@ -43,17 +44,19 @@ function lpu_print_block($module, $delta, $render = false){
  */
 function _field_get_value($entity_type, $entity, $field_name, $langcode = NULL, $index = 0, $safe_value = true, $full = false) {
     $items = field_get_items($entity_type, $entity, $field_name, $langcode);
-    if (array_key_exists($index, $items)) {
-        $item = $items[$index];
-        if ($full === true) {
-            return $item;
-        }
-        if ($safe_value === false) {
-            return $item['value'];
+    if ($items && count($items) > 0) {
+        if (array_key_exists($index, $items)) {
+            $item = $items[$index];
+            if ($full === true) {
+                return $item;
+            }
+            if ($safe_value === false) {
+                return $item['value'];
+            }
         }
     }
+    return NULL;
 }
-
 
 
 
