@@ -42,7 +42,7 @@ function lpu_print_block($module, $delta, $render = false){
  * @use field_get_items()
  * @return mixed value
  */
-function _field_get_value($entity_type, $entity, $field_name, $langcode = NULL, $index = 0, $safe_value = true, $full = false) {
+function _field_get_value($entity_type, $entity, $field_name, $langcode = NULL, $index = 0, $safe_value = false, $full = false) {
     $items = field_get_items($entity_type, $entity, $field_name, $langcode);
     if ($items && count($items) > 0) {
         if (array_key_exists($index, $items)) {
@@ -50,14 +50,14 @@ function _field_get_value($entity_type, $entity, $field_name, $langcode = NULL, 
             if ($full === true) {
                 return $item;
             }
-            if ($safe_value === false) {
-                return $item['value'];
+            if ($safe_value === true) {
+                return $item['safe_value'];
             }
+            return $item['value'];
         }
     }
     return NULL;
 }
-
 
 
 function lpu_print_node_form($node_type, $node = null, $render = false) {
