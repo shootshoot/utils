@@ -53,7 +53,10 @@ function _field_get_value($entity_type, $entity, $field_name, $langcode = NULL, 
             if ($safe_value === true) {
                 return $item['safe_value'];
             }
-            return $item['value'];
+            if (array_key_exists('value', $item)) {
+                return $item['value'];
+            }
+            return $item;
         }
     }
     return NULL;
