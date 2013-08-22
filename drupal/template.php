@@ -1,7 +1,7 @@
 /**
  * Fonction retournant l'alias d'url propre correspondant à une langue
  */
-function urlt($path, $lang = null) {
+function lpu_urlt($path, $lang = null) {
     global $language;
     if($lang === null) {
         $lang = $language->language;
@@ -21,7 +21,7 @@ function urlt($path, $lang = null) {
  * @param boolean $render if true, the return value is an html string, if false, the return value is a renderable array
  * @param string|array
  */
-function lpu_print_block($module, $delta, $render = false){
+function lpu_generate_block($module, $delta, $render = false){
     $block = block_load($module, $delta);
     $block_content = _block_render_blocks(array($block));
     $build = _block_get_renderable_array($block_content);
