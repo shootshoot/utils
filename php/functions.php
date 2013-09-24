@@ -94,7 +94,7 @@ function lpu_resp($__data = array(), $__code = 200, $__stop = true) {
  * </code>
  */
 function _mail($_to, $_subject, $_message, $_from, $_cc = array(), $_bcc = array(), $_headers = array())  {
-    $to = is_array($_to) ? implode(', ', $_to) : $to;
+    $to = is_array($_to) ? implode(', ', $_to) : $_to;
     $subject = $_subject;
     $message = is_array($_message) ? implode("\r\n", $_message) : $_message;
     $from = is_array($_from) ? implode(", ", $_from) : $_from;
