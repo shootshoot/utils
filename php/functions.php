@@ -49,6 +49,15 @@ function _get_global($__name, $__default = null, $__whereToSearch = null) {
     return $__default;
 }
 
+function lpu_resp($__data = array(), $__code = 200, $__stop = true) {
+	header("HTTP/1.0 $__code");
+	header('Content-Type: application/json');
+	print json_encode($__data);
+	if ($__stop) {
+		die();
+	}
+}
+
 /**
  * @author  Thierry Poinot - Les Poilus <t@lespoilus.net>
  * Simplify sending mails
