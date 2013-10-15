@@ -22,57 +22,6 @@ function download_file($__filepath, $__whitelist = array(), $__headers = array("
     }
 }
 
-/**
- * 
- * @param  [type] $__name          [description]
- * @param  [type] $__default       [description]
- * @param  string $__whereToSearch GET|POST|SERVER
- * @return [type]                  [description]
- */
-function _get_global($__name, $__default = null, $__whereToSearch = null) {
-    $globalsVar = array(
-        'post' => $_POST,
-        'get' => $_GET,
-        'server' => $_SERVER,
-    );
-    if ($__whereToSearch == null) {
-
-        foreach ($globalsVar as $search) {
-            if (is_array($search)) {
-                if (array_key_exists($__name, $search)) {
-                    return $search[$__name];
-                }
-            }
-        }
-    }
-    else {
-        switch($__whereToSearch) {
-            case 'GET':
-            case 'get':
-            case 'g':
-                $search = $globalsVar['get'];
-                break;
-            case 'POST':
-            case 'post':
-            case 'p':
-                $search = $globalsVar['post'];
-                break;
-            case 'SERVER':
-            case 'server':
-            case 's':
-                $search = $globalsVar['server'];
-                break;
-        }
-        if (is_array($search)) {
-            if (array_key_exists($__name, $search)) {
-                return $search[$__name];
-            }
-        }
-    }
-    
-    return $__default;
-}
-
 function lpu_resp($__data = array(), $__code = 200, $__stop = true) {
 	header("HTTP/1.0 $__code");
 	header('Content-Type: application/json');
