@@ -1,4 +1,3 @@
-<?php
     function lpu_get_errors() { return lpu_get_messages(); }
     function lpu_get_error($__key, $__default = NULL) { return lpu_get_message($__key, $__default); }
     function lpu_set_error($__key = NULL, $__value = NULL) { return lpu_set_message($__key, $__value); }
