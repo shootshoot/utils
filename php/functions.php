@@ -1,3 +1,27 @@
+function download_file($__filepath, $__whitelist = array(), $__headers = array("Cache-control" => "private")) {
+    if (in_array($__filepath, $__whitelist) && file_exists($__filepath)) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime = finfo_file($finfo, $__filepath);
+        if ($fd = fopen ($__filepath, "r")) {
+            $fsize = filesize($__filepath);
+            $path_parts = pathinfo($__filepath);
+            $ext = strtolower($path_parts["extension"]);
+            header("Content-type: ". $mime); 
+            // header("Content-type: application/octet-stream");
+            header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+            header("Content-length: $fsize");
+            foreach ($__headers as $name => $header) {
+                header(sprintf("%s: %s", $name, $header));
+            }
+            while(!feof($fd)) {
+                $buffer = fread($fd, 2048);
+                echo $buffer;
+            }
+        }
+        fclose ($fd);
+    }
+}
+
 /**
  * 
  * @param  [type] $__name          [description]
