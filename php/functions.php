@@ -1,5 +1,15 @@
-function download_file($__filepath, $__whitelist = array(), $__headers = array("Cache-control" => "private")) {
-    if (in_array($__filepath, $__whitelist) && file_exists($__filepath)) {
+/**
+ * If $__whitelist is a string, it must be a regex
+ * else, $__whitelist must be an array of the whitelist
+ */
+function lpu_download_file($__filepath,  $__whitelist = "#.*#", $__headers = array("Cache-control" => "private")) {
+    if (is_string($__whitelist)) {
+        $canDownloadFile = preg_match($regex, $__filepath);
+    }
+    elseif (is_array($__whitelist)) {
+        $canDownloadFile = in_array($__filepath, $__whitelist);
+    }
+    if ($canDownloadFile && file_exists($__filepath)) {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mime = finfo_file($finfo, $__filepath);
         if ($fd = fopen ($__filepath, "r")) {
